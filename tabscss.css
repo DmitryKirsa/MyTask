@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 10px;
+    font: 13px/1.4 Arial, sans-serif;
+}
+a {
+    color: #0094D6;
+}
+a:hover {
+    text-decoration: none;
+}
+
+body {
+    background: linear-gradient(90deg, #cfecd0, #a0cea7, #9ec0db);
+}
+.text {
+    max-width: 700px;
+    margin: 0 0 30px;
+    background: linear-gradient(90deg, #cfecd0, #a0cea7, #9ec0db);
+    border: 2px solid #7DCA86;
+    border-radius: 5px;
+    padding: 7px 15px;
+    box-sizing: border-box;
+
+}
+
+.tabs {
+   width: 100%;
+    height: 100%;
+    margin: 0 0 10px;
+}
+.tabs__caption {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    list-style: none;
+    position: relative;
+    margin: -1px 0 0 -1px;
+}
+
+.tabs__caption li:last-child:before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: -2px;
+    z-index: -1;
+    height: 5px;
+    background: #7DCA86;
+}
+
+.tabs__caption:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+.tabs__caption li {
+    padding: 9px 15px;
+    margin: 1px 0 0 1px;
+    background: #61AF6A;
+    color: #FFF;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    border: solid #61AF6A;
+    border-width: 2px 2px 0;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+}
+.tabs__caption li:not(.active) {
+    cursor: pointer;
+}
+.tabs__caption li:not(.active):hover {
+    background: #7DCA86;
+    border-color: #7DCA86;
+}
+.tabs__caption .active {
+    background: linear-gradient(90deg, #cfecd0, #a0cea7, #9ec0db);
+    color: #000;
+    border-color: #03451a;
+}
+
+.tabs__content {
+    display: none;
+    background: #FFF;
+    border: 2px solid #03451a;
+    border-radius: 0 5px 5px 5px;
+    padding: 7px 15px;
+}
+.tabs__content.active {
+    display: block;
+    background: linear-gradient(90deg, #cfecd0, #a0cea7, #9ec0db);
+}
+

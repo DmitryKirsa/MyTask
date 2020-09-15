@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task2</title>
+    <link rel="stylesheet" href="task2.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="ruDatePicker.js"></script>
+    <script src="tabsclicks.js"></script>
+
+    <link rel="stylesheet" href="tabscss.css">
+    <link rel="stylesheet" href="modaltask2.css">
+</head>
+
+
+<body style="background: linear-gradient(90deg, #cfecd0, #a0cea7, #9ec0db);">
+
+<!--Реализация вкладок-->
+<div class="tabs">
+    <ul class="tabs__caption">
+        <li class="active" style="">Обращение ДЦУП</li>
+        <li>Приказ ДЦУП</li>
+    </ul>
+
+<!--Первая вкладка-->
+    <div class="tabs__content  active">
+
+
+    <div style="width: 100%; margin: 0 auto;">
+        <div style="border-style: inset; border-color: black;" > <br>
+            <form id="formObr">
+            <label for="numText" style="text-shadow: 0 1px 1px #2D2020;"> №:</label>
+            <input type="text" id="numText" size="1">
+            <input type="hidden" id="idObr">
+            <input type="hidden" id="idRoadCodeObr">
+            <label for="dateFrom" style="text-shadow: 0 1px 1px #2D2020;"> от</label>
+            <input type="text" name="dateFrom" class="datepicker" id="dateFrom" size="5">
+            <input type="text" id="timeFrom" value="" size="5">
+            <br><br>
+            <label for="reasonText" style="text-shadow: 0 1px 1px #2D2020;"> Причина</label>
+                <input type="text"  disabled id="reasonText" value="" size="70">
+                <input type="hidden" id="reasonTextClassInput" name="reasonTextNameInput" value="">
+                <button type="button" id="buttonReason"><img src="up.jpg"></button>
+            </form>
+            <br>
+        </div>
+
+        <br>
+
+
+        <div style="background: #eee;border-style: inset; border-color: black; margin: 0 auto">
+            <table id="aggrTable" >
+                <thead class="aggrTableTh">
+                <tr>
+                    <th>Станция назначения</th>
+                    <th>Станция проблемы</th>
+                    <th>Индекс поезда</th>
+                    <th>Количество Вагонов</th>
+                    <th>Дорога бросания</th>
+                    <th><button type="button" id="addSub" style="width: 15px; height: 15px"><img src="pls.jpg"></button></th>
+                </tr>
+                </thead>
+                <tbody id="t_Stations">
+
+                </tbody>
+
+            </table>
+            <br><br><br><br><br><br><br><br><br>
+            <label for="lblSignature" style="text-shadow: 0 1px 1px #2D2020;"> Подпись</label>
+            <input type="text" id="lblSignature" value="Администратор">
+
+        </div>
+
+        <br>
+
+        <div style="background: #eee;border-style: inset; border-color: black; height: 100px">
+            <label for="lblPrik" style="text-shadow: 0 1px 1px #2D2020;">Оформленные приказы ЦУП на обращение</label>
+            <br>
+            <input type="text" id="lblPrik" value="">
+        </div>
+
+        <br>
+
+        <div style="background: #eee;border-style: inset; border-color: black; height: 100px">
+            <br><br>
+            <button id="newObr" class="btnPrikForm">Новое обращение</button>
+            <button id="searchObr" class="btnPrikForm">Поиск</button>
+            <button id="saveObr" class="btnPrikForm">Сохранить</button>
+            <button class="btnPrikForm" id="docTr">Документ</button>
+            <button id="inOrderBtn" class="btnPrikForm">В приказ ЦУП</button>
+        </div>
+        <br>
+
+        <div style="background: #eee;border-style: inset; border-color: black; height: 100%">
+            <label for="lblLastDays" style="text-shadow: 0 1px 1px #2D2020;">Последние обращения за (</label>
+            <input type="text" id="lblLastDays" value="30" size="1"> <label style="text-shadow: 0 1px 1px #2D2020;">) суток</label>
+            <button type="button" id="refDays" class="refObrSub" style="width: 15px; height: 15px"><img src="refresh.jpg"></button>
+            <table id="obrTable">
+                <thead class="obrTableTh">
+                <tr>
+                    <th>№Обращения</th>
+                    <th>Дата</th>
+                    <th>Дорога</th>
+                    <th>Подпись</th>
+                    <th>Тип обращения</th>
+                </tr>
+                </thead>
+
+                <tbody id="t_obrTable">
+                <tr>
+                </tr>
+                </tbody>
+
+            </table>
+            <br>
+        </div>
+    </div>
+
+    </div>
+
+
+<!--Вторая вкладка-->
+    <div class="tabs__content">
+        <div style="width: 100%; margin: 0 auto;">
+            <div style="border-style: inset; border-color: black;" > <br>
+                <form>
+                    <label for="numTextPrik" style="text-shadow: 0 1px 1px #2D2020;"> №:</label>
+                    <input type="text" id="numTextPrik" size="1">
+                    <input type="hidden" id="idObrPrik">
+                    <input type="hidden" id="idRoadCodePrik">
+                    <label for="dateFrom" style="text-shadow: 0 1px 1px #2D2020;"> от</label>
+                    <input type="text" name="dateFrom" class="datepicker" id="dateFromPrik" size="5">
+                    <input type="text" id="timeFromPrik" value="00:01" size="5">
+                    <br><br>
+                    <label for="reasonTextPrik" style="text-shadow: 0 1px 1px #2D2020;"> Причина бросания</label>
+                    <input type="text" disabled id="reasonTextPrik" value="" size="70">
+                    <input type="hidden" id="reasonTextPrikClassInput" name="reasonTextPrikNameInput" value="">
+                    <button type="button" id="buttonReasonPrik"><img src="up.jpg"></button>
+                </form>
+                <br>
+            </div>
+
+            <br>
+
+
+            <div style="background: #eee;border-style: inset; border-color: black; margin: 0 auto">
+                <table id="aggrTablePrik" >
+                    <thead class="aggrTableTh">
+                    <tr>
+                        <th>Индекс поезда</th>
+                        <th>Количество Вагонов</th>
+                        <th>Дорога Бросания</th>
+                        <th>Станция Назначения</th>
+                        <th><button type="button" id="addSubPrik" style="width: 15px; height: 15px"><img src="pls.jpg"></button></th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="t_Stations_Prik">
+
+                    </tbody>
+                </table>
+                <br><br><br><br><br><br><br><br><br>
+
+                <label for="lblObrPrik" style="text-shadow: 0 1px 1px #2D2020;">На обращение</label>
+                <input type="text" disabled id="lblObrPrik" value="39" size="2">
+                <button class="btnPrikForm" id="btnSelect">Выбрать</button>
+                <br>
+                <label for="lblOsnBros" style="text-shadow: 0 1px 1px #2D2020;">Основание бросания</label>
+                <input type="text" id="lblOsnBros" value="" size="20">
+                <br>
+                <label for="lblSignature_Prik" style="text-shadow: 0 1px 1px #2D2020;"> Подпись</label>
+                <input type="text" id="lblSignature_Prik" value="Администратор">
+
+            </div>
+            <br>
+
+            <div style="background: #eee;border-style: inset; border-color: black; height: 100px">
+                <label for="lblPrikCUP" style="text-shadow: 0 1px 1px #2D2020;">Оформленные приказы ДЦУП на приказ ЦУП</label>
+                <br>
+                <input type="text" id="lblPrikCUP" value="">
+            </div>
+
+            <br>
+
+            <div style="background: #eee;border-style: inset; border-color: black; height: 100px">
+                <br><br>
+                <button class="btnPrikForm" id="newOrder">Новый приказ</button>
+                <button class="btnPrikForm" id="searchOrder">Найти</button>
+                <button id="savePrik" class="btnPrikForm">Сохранить</button>
+                <button class="btnPrikForm" id="docOr">Документ</button>
+            </div>
+            <br>
+
+            <div style="background: #eee;border-style: inset; border-color: black; height: 100%">
+                <label for="lblLastPrikDays" style="text-shadow: 0 1px 1px #2D2020;">Последние приказы за (</label>
+                <input type="text" id="lblLastPrikDays" value="30" size="1"> <label style="text-shadow: 0 1px 1px #2D2020;">) суток</label>
+                <button type="button" id="refPrik" class="refPrikSub" style="width: 15px; height: 15px"><img src="refresh.jpg"></button>
+                <table id="prikTable">
+                    <thead class="prikTableTh">
+                    <tr>
+                        <th>№Приказа</th>
+                        <th>Дата</th>
+                        <th>№Обращения/Дорога обращения</th>
+                        <th>Подпись</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="t_prikTable">
+                    <tr>
+                    </tr>
+                    </tbody>
+
+                </table>
+                <br>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!--МОДАЛКИ-->
+<!--Модалка станций назначения-->
+<div id="dirStationsNaz" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Справочник Станций</h2>
+        </div>
+        <div class="modal-body">
+            <table id="dirStationsList">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <button class="btnPrikForm">Выбрать</button>
+    </div>
+</div>
+<!--Модалка станций проблемы-->
+<div id="dirStationsProb" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Справочник Станций</h2>
+        </div>
+        <div class="modal-body">
+            <table id="dirStationsProbList">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <button class="btnPrikForm">Выбрать</button>
+    </div>
+</div>
+<!--Модалка дорог бросания-->
+<div id="dirRoads" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Справочник Дорог</h2>
+        </div>
+        <div class="modal-body">
+            <table id="dirRoadsList">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <button class="btnPrikForm">Выбрать</button>
+    </div>
+</div>
+
+<!--Модалка дорог бросания в форме приказов-->
+<div id="dirRoadsPrik" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Справочник Дорог</h2>
+        </div>
+        <div class="modal-body">
+            <table id="dirRoadsPrikList">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <button class="btnPrikForm">Выбрать</button>
+    </div>
+</div>
+<!--Модалка станций назначения в форме приказов-->
+<div id="dirStationsNazPrik" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Справочник Станций</h2>
+        </div>
+        <div class="modal-body">
+            <table id="dirStationsPrikList">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <button class="btnPrikForm">Выбрать</button>
+    </div>
+</div>
+
+<!--Модалка Причин-->
+<div id="dirReasons" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Справочник Причин</h2>
+        </div>
+        <div class="modal-body">
+            <table id="dirReasonsList">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <button class="btnPrikForm">Выбрать</button>
+    </div>
+</div>
+<!--Модалка Причин в приказах-->
+<div id="dirReasonsPrik" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Справочник Причин</h2>
+        </div>
+        <div class="modal-body">
+            <table id="dirReasonsPrikList">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <button class="btnPrikForm">Выбрать</button>
+    </div>
+</div>
+
+<!--Модалка кнопки Выбрать в приказах-->
+<div id="dirbtnSelect" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Обращения</h2>
+        </div>
+        <div class="modal-body">
+            <table id="dirbtnSelectList">
+                <tbody id="t_selTable">
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<script src="task2main.js"></script>
+</body>
+</html>
